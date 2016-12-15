@@ -17,7 +17,6 @@ angular.module('jobTracker', [
   'jobTracker.demo',
   'jobTracker.getNews',
   'jobTracker.removeModal',
-  'jobTracker.config',
   'jobTracker.landing',
   'jobTracker.demoFactory',
   'jobTracker.deleteAccountModal',
