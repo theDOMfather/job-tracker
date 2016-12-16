@@ -211,6 +211,21 @@ a.navbar-brand {
   background-color: #00BCD4;
 }
 
+.panel-video {
+  text-align: center;
+  margin: 0 5%;
+}
+
+.panel-video img {
+  width: 100%;
+  margin: auto;
+}
+
+#video {
+  border: 2px solid #0097A7;
+  width: 100%;
+}
+
 
 /*THIS IS OUR COLOR PALETTE*/
 /*.dark-primary-color    { background: #0097A7; }
