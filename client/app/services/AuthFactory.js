@@ -19,6 +19,19 @@ angular.module('jobTracker.authService', [])
     });
   };
 
+  var enroll = function(user){
+    return $http({
+      method: 'POST',
+      url: '/enroll',
+      contentType : "application/json",
+      data: user
+    }).then((res) => {
+      return res.data;
+    }, (err) => {
+      console.error("ERROR:", err);
+    });
+  };
+
   var logout = function() {
     return $http({
       method: 'GET',
@@ -95,6 +108,7 @@ angular.module('jobTracker.authService', [])
     login: login,
     logout: logout,
     signup: signup,
+    enroll: enroll,
     isAuth: isAuth,
     updateAccount: updateAccount,
     updatePassword: updatePassword,

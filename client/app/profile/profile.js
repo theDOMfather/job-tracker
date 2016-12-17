@@ -42,8 +42,48 @@ angular.module('jobTracker.profile', [])
     $scope.changePass = '';
     $scope.showChangePassword = false;
   };
+  
   $scope.changePassword = function() {
 
   };
+
+  // set up video feed for photo capture
+  let video = document.querySelector('#video');
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia({video: true}, handleVideo, err => console.error(err));
+  }
+  function handleVideo(stream) {
+    video.src = window.URL.createObjectURL(stream);
+  }
+
+  // set up photo capture
+  $scope.photo = '';
+  $scope.capture = function() {
+    let scale = .25;
+    let video = $('#video').get(0);
+    let canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth * scale;
+    canvas.height = video.videoHeight * scale;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    $scope.photo = canvas.toDataURL();
+  };
+
+  $scope.enrollPhoto = function() {
+    $scope.user.photo = $scope.photo;
+    AuthFactory.enroll($scope.user)
+    .then((res) => {
+      console.log(res);
+      $scope.addingPhoto = false;
+      if (res.images && res.images[0].transaction.status === 'success') {
+        $scope.addedPhoto = "Security Photo Added";
+      } else {
+        $scope.addedPhoto = "Photo Upload Failed";
+      }
+    });
+  }
+
+
   $scope.getUser();
 });

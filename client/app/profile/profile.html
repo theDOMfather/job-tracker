@@ -20,19 +20,19 @@
             </div>
             <div class="form-group col-lg-10">
               <label class="control-label">First Name</label>
-              <span editable-text="user.firstname">{{ user.firstname || '--' }}</span>
+              <span editable-text="user.firstname">{{ user.firstname || "--" }}</span>
             </div>
             <div class="form-group col-lg-10">
               <label class="control-label">Last Name:</label>
-              <span editable-text="user.lastname">{{ user.lastname || '--' }}</span>
+              <span editable-text="user.lastname">{{ user.lastname || "--" }}</span>
             </div>
             <div class="form-group col-lg-10">
               <label class="control-label">Email:</label>
-              <span editable-text="user.email">{{ user.email || '--' }}</span>
+              <span editable-text="user.email">{{ user.email || "--" }}</span>
             </div>
             <div class="form-group col-lg-10">
               <label class="control-label">Phone Number:</label>
-              <span editable-text="user.phone">{{ user.phone || '--' }}</span>
+              <span editable-text="user.phone">{{ user.phone || "--" }}</span>
             </div>
             <div class="form-group col-lg-10">
               <label class="control-label">Job Status:</label>
@@ -41,29 +41,42 @@
             <br/>
           </div>
         </div> <!-- col-sm-5 col-sm-offset-2"-->
-      <div class="col-sm-5 col-sm-offset-1">
-        <br/>
-        <br/>
-        <button type="button" class="btn btn-default col-md-8" ng-click="editProfileForm.$show()" ng-show="!editProfileForm.$visible">
-          Edit Profile
-        </button>
-        <span ng-show="editProfileForm.$visible">
-          <button type="submit" class="btn btn-primary" ng-disabled="editProfileForm.$waiting">
-            Save
+        <div class="col-sm-5 col-sm-offset-1">
+          <br/>
+          <button type="button" class="btn btn-default col-md-8" ng-click="editProfileForm.$show()" ng-show="!editProfileForm.$visible">
+            Edit Profile
           </button>
-          <button type="button" class="btn btn-default" ng-disabled="editProfileForm.$waiting" ng-click="editProfileForm.$cancel()">
-            Cancel
-          </button>
-        </span>
-        <br/>
-        <br/>
+          <span ng-show="editProfileForm.$visible">
+            <button type="submit" class="btn btn-primary" ng-disabled="editProfileForm.$waiting">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="editProfileForm.$waiting" ng-click="editProfileForm.$cancel()">
+              Cancel
+            </button>
+          </span>
+          <br/>
+          <br/>
           <button class="btn btn-default col-md-8" ng-click="showChangePassword = !showChangePassword">Change Password</button>
-        <br/>
-        <br/>
+          <br/>
+          <br/>
           <button class="btn btn-default col-md-8" ng-click="deleteProfile()">Delete Account</button>
-        <br/>
-        <br/>
-      </div> <!-- col-sm-3 col-sm-offset-1 -->
+          <br/>
+          <br/>
+          <button ng-show="!addingPhoto" class="btn btn-default col-md-8" ng-click="addingPhoto=true">Add Photo</button>
+          <button ng-show="addingPhoto" class="btn btn-default col-md-8" ng-click="addingPhoto=false">Cancel Photo</button>
+          <br/>
+          <span ng-show="addingPhoto" class="panel-video">
+            <video ng-show="!photo" autoplay="true" id="video"></video>
+            <br />
+            <button ng-show="!photo" class="btn btn-primary" ng-click="capture()">Take Photo</button>
+
+            <img ng-show="photo" src={{photo}} />
+            <button ng-show="photo" class="btn btn-primary" ng-click="photo=''">Retake</button>
+            <button ng-show="photo" class="btn btn-primary" ng-click="enrollPhoto()">Submit</button>
+            <span ng-show="addedPhoto">{{addedPhoto}}</span>
+          </span>
+          <br/>
+        </div> <!-- col-sm-3 col-sm-offset-1 -->
       </form>
     </div>
   </div>

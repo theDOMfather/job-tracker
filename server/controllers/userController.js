@@ -1,4 +1,6 @@
 var User = require('../models/userModel.js');
+var config = require('../../config.js');
+var http = require('http');
 
 module.exports = {
   addUser: function(userObj) {
@@ -10,6 +12,34 @@ module.exports = {
           resolve(newUser);
         }
       });
+    });
+  },
+
+  enrollPhoto: function(userId, userPhoto) {
+    return new Promise(function(resolve, reject) {
+      let options = {
+        method: 'POST',
+        host: 'api.kairos.com',
+        path: '/enroll',
+        headers: {
+          'Content-Type': 'application/json',
+          'app_id': config.kairos.id,
+          'app_key': config.kairos.key
+        }
+      };
+      let data = {
+        'image': userPhoto,
+        'subject_id': userId,
+        'gallery_name': 'users'
+      };
+      let req = http.request(options, function(res) {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => resolve(body));
+      });
+      req.write(JSON.stringify(data));
+      req.on('error', err => reject(err));
+      req.end();
     });
   },
 
@@ -26,7 +56,7 @@ module.exports = {
   },
 
   updateUserInDb: function(user, userId) {
-    return User.update({"_id": userId}, user)
+    return User.update({'_id': userId}, user)
     .exec()
     .then(function(resp) {
       return resp;
@@ -41,7 +71,7 @@ module.exports = {
 
   deleteUser: function(userId) {
     return User.remove(
-      {"_id": userId}
+      {'_id': userId}
       )
     .exec()
     .then(function(resp) {

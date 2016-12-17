@@ -12,6 +12,14 @@
         {{error}}
       </div>
 
+      <div class="panel-video">
+        <video ng-show="!image" autoplay="true" id="video"></video>
+        <br />
+        <button ng-show="!image" ng-click="faceLogin()">Capture</button>
+
+        <img ng-show="image" src={{image}} />
+      </div>
+
       <form class="form-horizontal" role="form" name="signinForm" ng-submit="login()">
 
         <div class="input-group">

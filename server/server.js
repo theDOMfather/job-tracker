@@ -57,6 +57,8 @@ app.post('/login', passport.authenticate('local'), handlers.getUser);
 
 app.post('/signup', handlers.postUser);
 
+app.post('/enroll', handlers.enrollPhoto);
+
 app.get('/facebook', passport.authenticate('facebook'), function(req, res) {
   console.log(req);
   res.sendStatus(200);

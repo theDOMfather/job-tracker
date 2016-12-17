@@ -5,26 +5,36 @@ var googleSearchController = require('./controllers/googleSearchController');
 
 module.exports = {
 
-getUser: function(req, res) {
-  var userId = req.user._id;
-  userController.retrieveUser(userId)
-  .then(function(user) {
-    if(user === null) {
-      res.sendStatus(204);
-    } else {
-      console.log(user);
-      res.status(200).json(user);
-    }
-  }).catch(function(err) {
-    console.error(err);
-    res.status(500).json(err);
-  });
-  },
+  getUser: function(req, res) {
+    var userId = req.user._id;
+    userController.retrieveUser(userId)
+    .then(function(user) {
+      if(user === null) {
+        res.sendStatus(204);
+      } else {
+        console.log(user);
+        res.status(200).json(user);
+      }
+    }).catch(function(err) {
+      console.error(err);
+      res.status(500).json(err);
+    });
+    },
 
   postUser: function(req, res) {
     userController.addUser(req.body)
     .then(function(user) {
       res.status(201).json(user);
+    }).catch(function(err) {
+      console.error(err);
+      res.status(400).json(err);
+    });
+  },
+
+  enrollPhoto: function(req, res) {
+    userController.enrollPhoto(req.body._id, req.body.photo)
+    .then(function(stats) {
+      res.status(201).json(stats);
     }).catch(function(err) {
       console.error(err);
       res.status(400).json(err);
