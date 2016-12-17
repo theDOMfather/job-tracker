@@ -15,18 +15,18 @@ var PORT = process.env.PORT || 3000;
 
 app.use(cookieParser());
 
-app.use(session({
-  secret: 'kittyCat',
-  resave: false,
-  name: 'Nick_is_Awesome!!',
-  rolling: true,
-  cookie: {
-    path:'/',
-    httpOnly: true,
-    secure: false,
-    maxAge: 6000000,
-  }
-}));
+// app.use(session({
+//   secret: 'kittyCat',
+//   resave: false,
+//   name: 'Nick_is_Awesome!!',
+//   rolling: true,
+//   cookie: {
+//     path:'/',
+//     httpOnly: true,
+//     secure: false,
+//     maxAge: 6000000,
+//   }
+// }));
 
 app.use(passport.initialize());
 
@@ -48,7 +48,7 @@ app.use(multer({
   storage: storage
 }).any());
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname,'../client')));
@@ -90,13 +90,13 @@ app.post('/users/delete', handlers.deleteAccount);
 app.get('/getNews', handlers.searchGoogle);
 
 
-db.on('error', (err) => {
-  console.error("DB CONNECTION ERROR", err);
-});
+// db.on('error', (err) => {
+//   console.error("DB CONNECTION ERROR", err);
+// });
 
-db.once('open', () => {
-  console.log('MongoDB connected');
-  app.listen(PORT, () => {
-    console.log("Server listening on port", PORT);
-  });
-});
+// db.once('open', () => {
+//   console.log('MongoDB connected');
+//   app.listen(PORT, () => {
+//     console.log("Server listening on port", PORT);
+//   });
+// });
