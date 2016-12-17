@@ -12,15 +12,6 @@
         {{error}}
       </div>
 
-      <div class="panel-video">x
-        <video ng-show="!image" autoplay="true" id="video"></video>
-        <br />
-        <button ng-show="!image" ng-click="capture()">Capture</button>
-
-        <img ng-show="image" src={{image}} />
-        <button ng-show="image" ng-click="retake()">Retake</button>
-      </div>
-
       <form class="form-horizontal" role="form" name="signupForm" ng-submit="signupForm.$valid && signUp()">
 
         <div class="input-group">

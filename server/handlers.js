@@ -32,7 +32,7 @@ module.exports = {
   },
 
   enrollPhoto: function(req, res) {
-    userController.enrollPhoto(req.body._id, req.body.image)
+    userController.enrollPhoto(req.body._id, req.body.photo)
     .then(function(stats) {
       res.status(201).json(stats);
     }).catch(function(err) {
