@@ -101,7 +101,7 @@ angular.module('jobTracker.authService', [])
     {value: 3, text: "No Longer Looking"}
   ];
   var showJobStatus = function(scope) {
-    var selected = $filter('filter')(scope.jobStatuses, {value: scope.user.jobStatus});
+    var selected = $filter('filter')(scope.jobStatuses, {value: scope.user.jobStatuses});
     return selected[0].text;
   };
   return {
