@@ -42,7 +42,7 @@ angular.module('jobTracker.profile', [])
     $scope.changePass = '';
     $scope.showChangePassword = false;
   };
-  
+
   $scope.changePassword = function() {
 
   };
