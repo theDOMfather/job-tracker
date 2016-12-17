@@ -48,10 +48,11 @@ app.use(multer({
   storage: storage
 }).any());
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname,'../client')));
+app.use('/modules', express.static(path.join(__dirname, '../node_modules')));
 
 app.post('/login', passport.authenticate('local'), handlers.getUser);
 
