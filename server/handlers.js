@@ -21,6 +21,16 @@ module.exports = {
     });
     },
 
+  recognizePhoto: function(req, res) {
+    userController.recognizePhoto(req.body.photo)
+    .then(function(stats) {
+      res.status(201).json(stats);
+    }).catch(function(err) {
+      console.error(err);
+      res.status(400).json(err);
+    });
+  },
+
   postUser: function(req, res) {
     userController.addUser(req.body)
     .then(function(user) {

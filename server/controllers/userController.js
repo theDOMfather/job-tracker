@@ -55,6 +55,35 @@ module.exports = {
     });
   },
 
+  recognizePhoto: function(userPhoto) {
+    return new Promise(function(resolve, reject) {
+      let options = {
+        method: 'POST',
+        host: 'api.kairos.com',
+        path: '/recognize',
+        headers: {
+          'Content-Type': 'application/json',
+          'app_id': config.kairos.id,
+          'app_key': config.kairos.key
+        }
+      };
+      let data = {
+        'image': userPhoto,
+        'gallery_name': 'users'
+      };
+      let req = http.request(options, function(res) {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => {
+          resolve(JSON.parse(body)) ;
+        });
+      });
+      req.write(JSON.stringify(data));
+      req.on('error', err => reject(err));
+      req.end();
+    });
+  },
+
   updateUserInDb: function(user, userId) {
     return User.update({'_id': userId}, user)
     .exec()

@@ -55,6 +55,8 @@ app.use(express.static(path.join(__dirname,'../client')));
 
 app.post('/login', passport.authenticate('local'), handlers.getUser);
 
+app.post('/faceLogin', handlers.recognizePhoto, passport.authenticate('local'), handlers.getUser);
+
 app.post('/signup', handlers.postUser);
 
 app.post('/enroll', handlers.enrollPhoto);
