@@ -4,11 +4,11 @@
   <div class="col-sm-12" ng-hide="openAddJobForm">
     <div class="row">
 
-      <div class="col-sm-2 col-sm-offset-1">
+      <div class="col-sm-3 col-sm-offset-2">
         <button class="btn btn-default" type="button" ng-click="openAddJobForm = !openAddJobForm">Add a Job</button>
       </div><!-- /.col-sm-2 -->
 
-      <div class="col-sm-6">
+      <div class="col-sm-6 ">
         <div class="input-group">
           <input ng-model='search' type="text" class="form-control" placeholder="Search job list">
           <span class="input-group-btn">
@@ -21,9 +21,10 @@
   <!-- Add job form -->
   <add-job-dir></add-job-dir>
   <!-- Job list table -->
+  <div class="table-responsive" >
    <table class='table table-striped'>
     <thead>
-      <tr>
+      <tr class>
         <th class="col-sm-2" ng-click="sortHeader = 'company'; sortReverse = !sortReverse">
           Company
           <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
@@ -83,6 +84,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <small><div class="col-md-4 col-md-offset-4">
       <button id="first" class="btn btn-default" ng-disabled="pageButtonDisabled(-1)" ng-click="first()">First</button>&nbsp;
        <button  id="previous" class = "btn btn-default" ng-disabled="pageButtonDisabled(-1)" ng-click="paginate(-1)">Previous</button>
