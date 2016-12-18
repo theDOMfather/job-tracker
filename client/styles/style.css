@@ -172,6 +172,7 @@ a.navbar-brand {
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top: 0;
+  margin-left:5px;
 }
 
 .navbarDemo {
@@ -181,7 +182,7 @@ a.navbar-brand {
 .demoDiv {
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	padding-right: 0;
 	padding-left: 0;
 }
@@ -198,9 +199,17 @@ a.navbar-brand {
 	display: flex;
 }
 
- .signUpBtn {
-	 margin-right:10%;
-	 margin-left: 10%;
+
+ .signup-button   {
+  margin:auto;
+  margin-top:-300px;
+  display:block;
+
+ }
+
+ .button-container {
+  text-align:center;
+  display:block;
  }
 
  .divCtr {
@@ -225,6 +234,23 @@ a.navbar-brand {
   border: 2px solid #0097A7;
   width: 100%;
 }
+
+
+h3 {
+  padding: 10px;
+}
+
+
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #DDD;
+    -webkit-overflow-scrolling: touch;
+}
+
 
 
 /*THIS IS OUR COLOR PALETTE*/
