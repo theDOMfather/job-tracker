@@ -6,6 +6,9 @@ var googleSearchController = require('./controllers/googleSearchController');
 module.exports = {
 
   getUser: function(req, res) {
+    if (!req.user) {
+      res.status(400).send("No user found");
+    }
     var userId = req.user._id;
     userController.retrieveUser(userId)
     .then(function(user) {
@@ -21,10 +24,15 @@ module.exports = {
     });
     },
 
-  recognizePhoto: function(req, res) {
+  recognizePhoto: function(req, res, next) {
     userController.recognizePhoto(req.body.photo)
     .then(function(stats) {
-      res.status(201).json(stats);
+      if (stats.images && stats.images[0].transaction.status === 'success') {
+        req._id = stats.images[0].transaction.subject_id;
+        next();
+      } else {
+        res.status(400).json(stats);
+      }
     }).catch(function(err) {
       console.error(err);
       res.status(400).json(err);
@@ -132,6 +140,7 @@ module.exports = {
       res.sendStatus(204);
     });
   },
+
   updatePassword: function(req,res){
     var userId = req.user._id;
     var user = req.body;
@@ -144,6 +153,7 @@ module.exports = {
       res.sendStatus(204);
     });
   },
+
   deleteAccount: function(req, res){
     var userId = req.user._id;
     userController.deleteUser(userId)
@@ -155,6 +165,7 @@ module.exports = {
       res.sendStatus(204);
     });
   },
+
   searchGoogle: function(req, res) {
     console.log(req.query);
     googleSearchController(req.query.company)

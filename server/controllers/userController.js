@@ -75,7 +75,7 @@ module.exports = {
         let body = '';
         res.on('data', chunk => body += chunk);
         res.on('end', () => {
-          resolve(JSON.parse(body)) ;
+            resolve(JSON.parse(body)) ;
         });
       });
       req.write(JSON.stringify(data));

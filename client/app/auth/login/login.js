@@ -43,9 +43,9 @@ angular.module('jobTracker.login', [])
     $scope.user.photo = canvas.toDataURL();
     AuthFactory.faceLogin($scope.user)
     .then((res) => {
-      console.log('response: ', res);
+      console.log(res, res.data);
       $scope.addingPhoto = false;
-      if (res.data && res.data.images && res.data.images[0].transaction.status === 'success') {
+      if (res.status === 200) {
         $location.path('/mainList');
       } else {
         $scope.error = 'Photo login failed';
