@@ -5,6 +5,9 @@ angular.module('jobTracker.landing', [])
   $scope.buttonFunc = function() {
     $location.path("/signup");
   };
+   $scope.demoClick = function() {
+    $location.path("/mainList");
+  };
 
   $scope.isActive = function(viewLocation) {
     return viewLocation === $location.path();
