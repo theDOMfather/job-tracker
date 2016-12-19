@@ -23,7 +23,16 @@ angular.module('jobTracker.login', [])
     return viewLocation === $location.path();
   };
 
+  $scope.useFace = false;
   $scope.login = function () {
+    if (!$scope.useFace) {
+      $scope.localLogin();
+    } else {
+      $scope.faceLogin();
+    }
+  }
+
+  $scope.localLogin = function () {
 		AuthFactory.login($scope.user)
 		.then((data) => {
 			$location.path('/mainList');
