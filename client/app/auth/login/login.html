@@ -22,13 +22,13 @@
 
         <div ng-show="!useFace" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input type="text" ng-model='user.username' class="form-control"
+          <input type="text" ng-model="user.username" class="form-control"
             name="username" placeholder="Username" required>
         </div>
 
         <div ng-show="!useFace" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <input id="login-password" type="password" ng-model='user.password' class="form-control"
+          <input id="login-password" type="password" ng-model="user.password" class="form-control"
             name="password" placeholder="Password" required>
         </div>
 
@@ -38,15 +38,21 @@
           </div>
         </div>
 
-        <div>
-          <a ng-click="useFace = !useFace">Toggle face login</a>
+        <div ng-show="!useFace">
+          OR
+          <a ng-click="useFace = !useFace" class="link">Sign in with a smile!</a>
         </div>
+
+        <div ng-show="useFace">
+          OR
+          <a ng-click="useFace = !useFace" class="link">Login using a password</a>
+        </div>        
 
         <div class="form-group">
           <div class="col-md-12 control">
-            <div class='form-footer'>
+            <div class="form-footer">
               Don't have an account yet?
-              <a class='link' ui-sref="signup">Sign Up Here</a>
+              <a class="link" ui-sref="signup">Sign Up Here</a>
             </div>
           </div>
         </div>

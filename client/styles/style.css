@@ -65,7 +65,8 @@
   color: #FF5252;
 }
 .link:hover{
-  color: #FF8A80;;
+  color: #FF8A80;
+  cursor: pointer;
 }
 
 .alert{
