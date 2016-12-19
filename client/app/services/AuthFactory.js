@@ -5,16 +5,25 @@ angular.module('jobTracker.authService', [])
     return $http({
       method: 'POST',
       url: '/login',
-      contentType : "application/json",
+      contentType: "application/json",
       data: user
     });
   };
+
+  var faceLogin = function(user){
+    return $http({
+      method: 'POST',
+      url: '/faceLogin',
+      contentType: "application/json",
+      data: user
+    });
+  }
 
   var signup = function(user){
     return $http({
       method: 'POST',
       url: '/signup',
-      contentType : "application/json",
+      contentType: "application/json",
       data: user
     });
   };
@@ -23,7 +32,7 @@ angular.module('jobTracker.authService', [])
     return $http({
       method: 'POST',
       url: '/enroll',
-      contentType : "application/json",
+      contentType: "application/json",
       data: user
     }).then((res) => {
       return res.data;
@@ -53,6 +62,7 @@ angular.module('jobTracker.authService', [])
       console.error("ERROR:", err);
     });
   };
+
   var getProfile = function() {
     return $http({
       method: 'GET',
@@ -87,6 +97,7 @@ angular.module('jobTracker.authService', [])
 
     });
   };
+
   var deleteAccount = function() {
     return $http({
       method: 'POST',
@@ -106,6 +117,7 @@ angular.module('jobTracker.authService', [])
   };
   return {
     login: login,
+    faceLogin: faceLogin,
     logout: logout,
     signup: signup,
     enroll: enroll,
