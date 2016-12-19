@@ -12,21 +12,21 @@
         {{error}}
       </div>
 
-      <div class="panel-video">
+      <div ng-show="useFace" class="panel-video">
         <video ng-show="!image" autoplay="true" id="video"></video>
         <br />
-        <button ng-show="!image" ng-click="faceLogin()">Login</button>
+        <!-- <button ng-show="!image" ng-click="faceLogin()" class="btn btn-success">Login</button> -->
       </div>
 
       <form class="form-horizontal" role="form" name="signinForm" ng-submit="login()">
 
-        <div class="input-group">
+        <div ng-show="!useFace" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
           <input type="text" ng-model='user.username' class="form-control"
             name="username" placeholder="Username" required>
         </div>
 
-        <div class="input-group">
+        <div ng-show="!useFace" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
           <input id="login-password" type="password" ng-model='user.password' class="form-control"
             name="password" placeholder="Password" required>
@@ -36,6 +36,10 @@
           <div class="col-sm-12 controls">
             <button id="btn-login" type="submit" class="btn btn-success">Login</button>
           </div>
+        </div>
+
+        <div>
+          <a ng-click="useFace = !useFace">Toggle face login</a>
         </div>
 
         <div class="form-group">
